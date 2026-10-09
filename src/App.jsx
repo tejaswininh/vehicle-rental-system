@@ -9,6 +9,7 @@ function App() {
   const [bookings, setBookings] = useState([])
   const [search, setSearch] = useState('')
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const [name, setName] = useState('')
   const [selectedVehicle, setSelectedVehicle] = useState('')
@@ -21,7 +22,9 @@ function App() {
 
   async function checkUser() {
     const { data } = await supabase.auth.getUser()
+
     setUser(data.user)
+    setLoading(false)
 
     if (data.user) {
       fetchVehicles()
@@ -34,7 +37,9 @@ function App() {
       .from('vehicles')
       .select('*')
 
-    if (!error) setVehicles(data)
+    if (!error) {
+      setVehicles(data)
+    }
   }
 
   async function fetchBookings() {
@@ -42,7 +47,9 @@ function App() {
       .from('bookings')
       .select('*')
 
-    if (!error) setBookings(data)
+    if (!error) {
+      setBookings(data)
+    }
   }
 
   async function bookVehicle(e) {
@@ -119,6 +126,10 @@ function App() {
 
   if (path === '/logout') {
     return <Logout />
+  }
+
+  if (loading) {
+    return <p>Loading...</p>
   }
 
   if (!user) {

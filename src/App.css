@@ -1,57 +1,236 @@
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
+  background: #edf5f2;
+  color: #24483b;
 }
 
-#root {
-  max-width: 900px;
-  margin: auto;
-  padding: 30px;
+#root > div:not(.auth-page) {
+  color: #24483b;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
+#root h1,
+#root h2,
+#root h3 {
+  color: #276955;
 }
 
-h2 {
-  margin-top: 30px;
+#root > div > div,
+#root form {
+  background: #ffffff;
+  border: 1px solid #d0e7dc;
+  box-shadow: 0 5px 15px rgba(39, 105, 85, 0.08);
 }
 
-#root > div > div {
-  background: white;
-  padding: 15px;
-  margin: 12px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+#root input,
+#root select {
+  background: #f6fbf8;
+  color: #24483b;
+  border: 1px solid #b9d8ca;
 }
 
-form {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+#root input::placeholder {
+  color: #789589;
+}
+
+#root button {
+  background: #64b8a2;
+  color: #ffffff;
+}
+
+#root button:hover {
+  background: #429b83;
+}
+
+#root a {
+  color: #27836d;
+}
+
+#root form {
+  background: #ffffff;
+  border: 1px solid #d0e7dc;
+}
+
+/* Fix login and signup layout */
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  background: #edf5f2;
 }
 
-input,
-select,
-button {
-  padding: 12px;
+.auth-header {
+  width: calc(100% + 40px);
+  max-width: none;
+  margin: 0;
+  padding: 25px 20px 65px;
+  text-align: center;
+  background: linear-gradient(110deg, #315b4a, #278b91);
+  color: white;
+}
+
+.auth-header h1 {
+  text-align: center;
+  color: white;
+  font-size: 36px;
+  margin: 0 0 12px;
+}
+
+.auth-header p {
+  text-align: center;
+  color: #f0fdfa;
+  margin: 0;
+}
+
+.auth-card {
+  width: min(525px, 100%);
+  margin: -30px auto 30px;
+  padding: 28px 30px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+  position: relative;
+}
+
+.auth-card h2 {
+  font-size: 28px;
+  color: #087b78;
+  margin: 12px 0 18px;
+  text-align: left;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 15px 18px;
+  margin: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fbfa;
+  color: #243b35;
   font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
 }
 
-button {
-  background: #2563eb;
+.auth-card form button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  background: #107c79;
   color: white;
   border: none;
-  cursor: pointer;
+  border-radius: 10px;
 }
 
-button:hover {
-  background: #1d4ed8;
+.auth-card .auth-switch {
+  display: block;
+  width: 100%;
+  margin: 12px auto 0;
+  padding: 10px;
+  background: transparent;
+  color: #087b78;
+}
+
+.auth-footer {
+  width: 100%;
+  margin-top: 0;
+  text-align: center;
+  border-top: 1px solid #dce7e3;
+  color: #64748b;
+  padding: 24px;
+}
+
+/* Final login page adjustments */
+.auth-header h1 {
+  color: #ffffff !important;
+  font-size: 38px;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.auth-card form {
+  border: none !important;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.auth-card input {
+  width: 100%;
+  border: 1px solid #cbded5;
+  border-radius: 15px;
+  margin: 0;
+}
+
+.auth-card form button {
+  border: none;
+  border-radius: 12px;
+  background: #107c79;
+  color: #ffffff;
+}
+
+.auth-card .auth-switch {
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #087b78;
+}
+
+.auth-card .auth-switch:hover {
+  background: #e9f5f0;
+}
+
+.auth-card {
+  overflow: hidden;
+}
+
+/* Fix vehicle booking layout */
+#root > div:not(.auth-page) form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  margin: 16px 0;
+  background: #ffffff;
+  border: 1px solid #d0e7dc;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(39, 105, 85, 0.08);
+}
+
+#root > div:not(.auth-page) form input,
+#root > div:not(.auth-page) form select {
+  width: 100%;
+  padding: 13px;
+  margin: 0;
+  border: 1px solid #b9d8ca;
+  border-radius: 9px;
+  background: #f6fbf8;
+  color: #24483b;
+  font-size: 15px;
+}
+
+#root > div:not(.auth-page) form button {
+  width: 100%;
+  margin: 5px 0 0;
+  padding: 13px;
+  border-radius: 9px;
+  background: #429b83;
+  color: #ffffff;
+}
+
+#root > div:not(.auth-page) h2 {
+  margin: 30px 0 16px;
+  text-align: left;
 }

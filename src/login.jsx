@@ -1,55 +1,89 @@
+
 import { useState } from 'react'
 import { supabase } from './supabase'
+import './App.css'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isSignup, setIsSignup] = useState(false)
 
-  async function handleLogin(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    })
+    if (isSignup) {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password
+      })
 
-    if (error) {
-      alert(error.message)
+      if (error) {
+        alert(error.message)
+      } else {
+        alert('Account created! You can now log in.')
+        setIsSignup(false)
+      }
     } else {
-      alert('Login successful!')
-      window.location.href = '/'
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+
+      if (error) {
+        alert(error.message)
+      } else {
+        window.location.href = '/'
+      }
     }
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="auth-page">
+      <header className="auth-header">
+        <h1>Rent your vehicle in minutes</h1>
+        <p>Find your ride, choose your dates, and book it online.</p>
+      </header>
 
-      <form onSubmit={handleLogin}>
-        <p>Email</p>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+      <main className="auth-card">
+        <h2>{isSignup ? 'Create Account' : 'Login'}</h2>
 
-        <p>Password</p>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <br /><br />
+          <input
+            type="password"
+            placeholder="Password (min 6 characters)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            minLength={6}
+            required
+          />
 
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit">
+            {isSignup ? 'Sign Up' : 'Login'}
+          </button>
+        </form>
 
-      <p>
-        <a href="/">Back to Home</a>
-      </p>
+        <button
+          type="button"
+          className="auth-switch"
+          onClick={() => setIsSignup(!isSignup)}
+        >
+          {isSignup
+            ? 'Already registered? Login'
+            : 'New here? Sign Up'}
+        </button>
+      </main>
+
+      <footer className="auth-footer">
+        © 2026 Vehicle Rental System
+      </footer>
     </div>
   )
 }
